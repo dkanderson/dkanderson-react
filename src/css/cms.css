@@ -1,0 +1,324 @@
+.intro.cms{
+    padding: 0px;
+    background:#222 url(../img/simple_dashed.png) 0 0 repeat;
+    border-bottom:1px solid rgba(255,255,255,.08);
+}
+.intro.cms h1{
+    color: #fff;
+    margin: 0px;
+    font-size: 1.5em;
+    padding: 10px 0;
+    text-align: left;
+    width: 50%;
+    float: left;
+} 
+
+.cms-nav-list{
+    list-style-type: none;
+    margin: 0;
+    width: 100%;
+    padding: 20px 0;
+}
+
+.cms-nav-list li > span{
+    color: #aaa;
+    font-weight: 700;
+    display: flex;
+    padding: 5px 20px;
+    border-bottom: 1px solid rgba(255,255,255,.06);
+}
+
+.cms-navigation .sub-nav{
+    background-color: #111;
+    padding:  0;
+    display: block;
+}
+
+.cms-navigation .sub-nav a{
+    display: block;
+    color: #ccc;
+    text-decoration: none;
+    font-size: .95em;
+    padding: 5px 20px;
+    cursor: pointer;
+    font-weight: 100;
+}
+
+.cms-navigation .sub-nav a:hover{
+    background-color: rgba(255, 255, 255, 0.015);
+    color: #aaa;
+}
+
+.cms-wrapper{
+    display: grid;
+    grid-template-columns: 250px 2fr;
+    overflow-x: visible;
+}
+
+.cms-navigation{
+    background-color: #000;
+}
+
+.data-wrapper{
+    border-right: 1px solid rgba(0,0,0,0.125);
+}
+
+.cms-wrapper .data-list{
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    display: block;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.cms-wrapper .data-list .list-item{
+    padding: 5px 20px;
+    border-bottom: 1px solid rgba(0,0,0,0.125);
+    width: 100%;
+    position: relative;
+}
+
+.list-item .link{
+    cursor: pointer;
+    font-weight: 400;
+    color: #00ace6;
+}
+
+.button-wrapper{
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.cms-nav-list .icon-wrap svg{
+    fill:white;
+    width: 15px;
+    height: 15px;
+    margin-right: 5px;
+}
+
+@media only screen and (max-width: 768px) {
+    .container.cms{
+        margin: 0;
+        padding: 0;
+        width: 100%;
+    } 
+    .cms-wrapper {
+        display: grid;
+        grid-template-columns: 50px 2fr;
+    }
+    .cms-nav-list li{
+        position: relative;
+        overflow-x: visible;
+    }
+    .cms-nav-list li .sub-nav, .nav-item-name{
+        display: none;
+    }
+
+    .cms-nav-list li:hover{
+        background-color: #111;
+    }
+    .cms-nav-list li:hover .sub-nav{
+        position: absolute;
+        top: 0;
+        left: 50px;
+        width:200px;
+        display: block;
+        z-index: 99999;
+        min-height: 33px;
+    }
+    .intro.cms h1{
+        color: #fff;
+        margin: 0px;
+        font-size: 1.5em;
+        padding-top: 10px;
+        width: 100%;
+        float: none;
+        text-align: center;
+    } 
+    .intro.cms .user-login{
+        width: 100%;
+        float: none;
+        line-height: 53px;
+        text-align: center;
+    }
+
+    .position-form .form-wrapper{
+        width: 100%;
+    }
+
+    .list-item .button-title{
+        display: none;
+    }
+
+    .list-item .button-icon svg{
+        margin-right: 0px;
+    }
+    
+}
+@media only screen and (max-width: 767px) and (min-width: 480px){
+    .intro.cms .container{
+        width: 100%;
+    }
+}
+
+.user-login{
+    width: 40%;
+    float: right;
+    line-height: 53px;
+    text-align: right;
+}
+.user-login span{
+    color: #fff;
+}
+
+.link.logout{
+    color: #ff8e19;
+    cursor: pointer;
+    font-weight: 400;
+}
+
+.data-wrapper .form-wrapper{
+    width:100%;
+}
+
+.form-wrapper .text-input, .form-wrapper .text-area{
+    border: 1px solid rgba(0,0,0,0.0726);
+    padding: 10px;
+    width: 100%;
+}
+.btn{
+	padding: 5px 10px;
+	background: #00ace6;
+	color: #fff;
+	border-radius: 5px;
+	text-align: center;
+	font-size: .75em;
+	font-weight: 400;
+	display: inline-block;
+	cursor: pointer;
+    text-decoration: none;
+}
+
+.form-btn.btn{
+    margin-left:10px;
+    margin-top: 10px;
+}
+
+.delete-btn{
+    background-color: #cd3906;
+}
+
+.list-item .btn{
+    height: 32px;
+    border: none;
+    border-radius: 0px;
+}
+
+.form-wrapper .label{
+    text-transform: capitalize;
+    font-weight: 400;
+    padding-bottom: 5px;
+    padding-left: 2px;
+    color: #666;
+    display: inline-block;
+}
+
+.input-file-wrapper{
+    background-color: #fff;
+    border: 1px solid rgba(0,0,0,0.125);
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.input-file-wrapper .input-file{
+    padding: 5px 0 5px 0;
+    color: #ccc;
+    font-style: italic;
+}
+
+.button-upload-file{
+    float: right;
+}
+
+.upload-file-wrapper{
+    border-top: 1px solid rgba(0,0,0,0.125);
+    padding-top: 20px;
+}
+
+.checkbox-group-wrapper{
+    padding: 10px 0 0 20px;
+}
+.checkbox-group-wrapper label{
+    display: block;
+    color: #666;
+    position: relative;
+    padding-left: 30px;
+}
+
+.checkbox-group-wrapper label input{
+    position: absolute;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    opacity: 0;
+}
+
+.checkMark{
+    position: absolute;
+    display: block;
+    height: 20px;
+    width: 20px;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 172, 230, 0.5);
+}
+
+.checkbox-group-wrapper label:hover .checkMark{
+    background-color: rgba(0, 172, 230, 0.75);
+}
+
+.checkbox-group-wrapper label input:checked ~ .checkMark{
+    background-color: #ff8e19;
+}
+
+.checkMark:after {
+    content: '';
+    position: absolute;
+    display: none;
+}
+
+.checkbox-group-wrapper label input:checked ~ .checkMark:after{
+    display: block
+}
+
+.checkMark:after{
+    border-style: solid;
+    border-width: 0px 3px 3px 0px;
+    border-color: #fff;
+    width: 5px;
+    height: 10px;
+    z-index: 20;
+    top: 2px;
+    right:6px;
+    background: transparent;
+    transform: rotate(45deg);
+}
+
+.position-form .form-wrapper .input.err{
+    border-color: red;
+}
+
+.position-form .form-wrapper .input.match{
+    border-color: green;
+}
+
+.list-item .button-icon svg{
+    fill: #fff;
+    width: 10px;
+    height: 10px;
+    margin-right: 3px;
+}

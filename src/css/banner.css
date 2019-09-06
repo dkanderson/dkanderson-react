@@ -1,0 +1,22 @@
+.slide-in {
+    -webkit-animation: slide-in .5s ease-in forwards;
+    -o-animation: slide-in .5s ease-in forwards;
+    animation: slide-in .5s ease-in forwards;
+  }
+  
+  @keyframes slide-in{
+      to{ transform: translateX(0); }
+  }
+  
+  @-webkit-keyframes slide-in {
+      to { -webkit-transform: translateX(0); }
+  }
+  
+  @-o-keyframes slide-in {
+      to {  -o-transform: translateX(0);}
+  }
+  
+  @-moz-keyframes slide-in {
+      to {  -moz-transform: translateX(0);}
+  }
+  

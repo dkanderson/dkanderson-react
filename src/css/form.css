@@ -1,0 +1,84 @@
+.form-wrapper{
+	width: 400px;
+	padding: 20px;
+}
+
+.error-msg{
+	color: red;
+	display: block;
+	padding-bottom: 20px;
+}
+
+.error-message-list{
+	margin-top: -10px;
+}
+.error-msg.hidden{
+    display: none;
+}
+
+.button{
+	padding: 5px 10px;
+	background: #00ace6;
+	color: #fff;
+	border-radius: 5px;
+	text-align: center;
+	font-size: .75em;
+	font-weight: 400;
+	display: inline-block;
+	cursor: pointer;
+    text-decoration: none;
+    margin-top: 10px;
+}
+.button.form-submit{
+    margin: 20px 0;
+    float: right;
+}
+
+.figure.uploaded-image{
+	max-width: 300px;
+}
+.figure.uploaded-image img{
+    width: 100%;
+    border: 1px solid rgba(0,0,0,0.4);
+    padding: 20px;
+}
+
+.position-form{
+	display: block;
+	padding: 15%;
+} 
+
+.exists{
+	font-size: .75em;
+	color: red;
+	position: absolute;
+	right: 15px;
+	top: 10px;
+}
+
+.position-form .form-wrapper{
+    display: block;
+    background-color: #fff;
+    border: 1px solid rgba(0,0,0,0.0726);
+    border-radius: 5px;
+}
+
+.position-form.login-form{
+	display: grid;
+	grid-template-rows: 100%;
+	justify-content: center;
+	align-items: center;
+}
+
+.position-form .form-wrapper .input{
+    margin-bottom: 10px;
+    border: 1px solid rgba(0,0,0,0.0726);
+    padding: 10px;
+    width: 100%;
+}
+
+.fieldset{
+	border: none;
+	position: relative;
+	padding: 10px 0;
+}
