@@ -100,6 +100,13 @@
     margin-right: 5px;
 }
 
+.list-item .button-icon svg{
+    fill: #fff;
+    width: 10px;
+    height: 10px;
+    margin-right: 3px;
+}
+
 @media only screen and (max-width: 768px) {
     .container.cms{
         margin: 0;
@@ -121,7 +128,7 @@
     .cms-nav-list li:hover{
         background-color: #111;
     }
-    .cms-nav-list li:hover .sub-nav{
+    .cms-nav-list li:hover .sub-nav, .cms-nav-list li:active .sub-nav{
         position: absolute;
         top: 0;
         left: 50px;
@@ -156,6 +163,8 @@
 
     .list-item .button-icon svg{
         margin-right: 0px;
+        width: 15px;
+        height: 15px;
     }
     
 }
@@ -314,11 +323,4 @@
 
 .position-form .form-wrapper .input.match{
     border-color: green;
-}
-
-.list-item .button-icon svg{
-    fill: #fff;
-    width: 10px;
-    height: 10px;
-    margin-right: 3px;
 }
