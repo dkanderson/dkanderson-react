@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { ReactComponent as EditSVG } from './svg/edit.svg';
 import { ReactComponent as DeleteSVG } from './svg/garbage.svg';
+import ConfirmDelete from './confirm-delete';
 
 class ListArtwork extends Component{
     constructor(props){
@@ -11,6 +12,7 @@ class ListArtwork extends Component{
         this.getArtworkData = this.getArtworkData.bind(this);
         this.handleClick = this.handleClick.bind(this);
         this.deleteArtwork = this.deleteArtwork.bind(this);
+        this.toggleConfirm = this.toggleConfirm.bind(this);
     }
 
     componentWillMount(){
@@ -39,16 +41,16 @@ class ListArtwork extends Component{
     }
 
     deleteArtwork(id){
-        fetch(`/api/artwork/${id}`, {
-            method: 'DELETE'
+        this.setState({
+            toggleConfirm: true,
+            toggleId: id
         })
-        .then(response => {
-            if(response.status === 200) {
-                this.getArtworkData();
-            }
-        })
-        .catch(error => {
-            console.error(error);
+    }
+
+    toggleConfirm(){
+        this.setState({
+            toggleConfirm: false,
+            toggleId: undefined
         })
     }
 
@@ -56,6 +58,14 @@ class ListArtwork extends Component{
         return data.map((artwork) => {
             return (
                 <li className="artwork list-item" key={artwork.id}>
+                    { (+this.state.toggleId === artwork.id ) && 
+                        <ConfirmDelete type="artwork" 
+                                    identifier={artwork.id} 
+                                    title={artwork.title} 
+                                    callback={this.getArtworkData} 
+                                    handleCancel={this.toggleConfirm} 
+                                    showMessage={this.state.toggleConfirm} />
+                    }
                     <span onClick={this.handleClick} data-type="edit" data-id={artwork.id} className="link">{artwork.title.slice(0, 20) + (artwork.title.length >= 20 ? '...' : '')}</span>
                     <span className="button-wrapper">
                         <button onClick={this.handleClick} className="edit-btn btn" data-type="edit" data-id={artwork.id}>

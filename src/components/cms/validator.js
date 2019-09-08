@@ -1,4 +1,4 @@
-function validator( state ) {
+function validator( state, edit ) {
     let regex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     let formData = Object.assign({}, state);
     delete formData.message;
@@ -18,7 +18,7 @@ function validator( state ) {
         })
         .then(res => res.json())
         .then(data => {
-            if ( data._id ) {
+            if ( data._id && !edit ) {
                 result.username.status = 'err';
                 result.username.valid = false;
                 result.username.exists = true;

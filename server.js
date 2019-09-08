@@ -14,9 +14,10 @@ const { getArtwork, getBlog,
         getWork, addNewUser, 
         addNewComment, addNewArtwork,
         addNewBlog, addNewWork,
-        updateArtwork, deleteArtwork,
+        updateArtwork, updateUser, 
         updateBlog, updateWork,
-        deleteBlog, deleteWork, deleteComment } = require('./lib/service');
+        deleteArtwork, deleteBlog, 
+        deleteWork, deleteComment, deleteUser } = require('./lib/service');
 
 // const dbUrl = `mongodb://${process.env.DB_USER}:${process.env.DB_PASSWORD}@ds251598.mlab.com:41699/dkanderson`;
 const dbUrl = `mongodb://localhost/dkanderson`;
@@ -470,7 +471,7 @@ app.post('/api/logout', (req, res, next) => {
 });
 
 /*-------------------------------------------------------------------------------------
-    Update: Artwork, Blog, Work
+    Update: Artwork, Blog, Work, User
 ======================================================================================*/
 
 
@@ -534,6 +535,26 @@ app.put('/api/work/:id', async (req, res) => {
     }
 });
 
+// Update User
+app.put('/api/users/:username', async (req, res) => {
+
+    try {
+
+        const response = await updateUser(req.body, req.params.username);
+
+        if (response.hasOwnProperty("type")) {
+            throw response;
+        } else {
+            res.send({status: 200, message: 'Updated Successfully!', res: req.body});
+        }
+
+    } catch (error) {
+
+        errorHandler(error, req, res);
+
+    }
+});
+
 /*-------------------------------------------------------------------------------------
     Delete: Artwork, Blog, Work, Comments
 ======================================================================================*/
@@ -580,7 +601,7 @@ app.delete('/api/blog/:slug', async (req, res) => {
     }
 });
 
-// Delete Blog
+// Delete Work
 app.delete('/api/work/:slug', async (req, res) => {
 
     try {
@@ -621,6 +642,27 @@ app.delete('/api/comment/:id', async (req, res) => {
 
     }
 });
+
+// Update User
+app.delete('/api/users/:username', async (req, res) => {
+
+    try {
+
+        const response = await deleteUser(req.params.username);
+
+        if (response.hasOwnProperty("type")) {
+            throw response;
+        } else {
+            res.send({status: 200, message: 'Deleted Successfully!', res: req.body});
+        }
+
+    } catch (error) {
+
+        errorHandler(error, req, res);
+
+    }
+});
+
 
 
 

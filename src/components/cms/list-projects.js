@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { ReactComponent as EditSVG } from './svg/edit.svg';
 import { ReactComponent as DeleteSVG } from './svg/garbage.svg';
+import ConfirmDelete from './confirm-delete';
 
 class ListProjects extends Component{
     constructor(props){
@@ -11,6 +12,7 @@ class ListProjects extends Component{
         this.getWorkData = this.getWorkData.bind(this);
         this.handleClick = this.handleClick.bind(this);
         this.deleteWork = this.deleteWork.bind(this);
+        this.toggleConfirm = this.toggleConfirm.bind(this);
     }
 
     componentWillMount(){
@@ -39,16 +41,16 @@ class ListProjects extends Component{
     }
 
     deleteWork(id){
-        fetch(`/api/work/${id}`, {
-            method: 'DELETE'
+        this.setState({
+            toggleConfirm: true,
+            toggleId: id
         })
-        .then(response => {
-            if(response.status === 200) {
-                this.getWorkData();
-            }
-        })
-        .catch(error => {
-            console.error(error);
+    }
+
+    toggleConfirm(){
+        this.setState({
+            toggleConfirm: false,
+            toggleId: undefined
         })
     }
 
@@ -56,6 +58,14 @@ class ListProjects extends Component{
         return data.map((work) => {
             return (
                 <li className="work list-item" key={work.id}>
+                    { (+this.state.toggleId === work.id ) && 
+                        <ConfirmDelete type="work" 
+                                    identifier={work.id} 
+                                    title={work.content} 
+                                    callback={this.getWorkData} 
+                                    handleCancel={this.toggleConfirm} 
+                                    showMessage={this.state.toggleConfirm} />
+                    }
                     <span className="link">{work.title.slice(0, 20) + (work.title.length >= 20 ? '...' : '')}</span>
                     <span className="button-wrapper">
                         <button onClick={this.handleClick} className="edit-btn btn" data-type="edit" data-id={work.id}>

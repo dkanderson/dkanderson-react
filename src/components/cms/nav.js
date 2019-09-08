@@ -11,6 +11,7 @@ import AddNewArtWork from './add-artwork';
 import UpdateArtwork from './update-artwork';
 import AddProject from './add-project';
 import UpdateProject from './update-project';
+import UpdateUser from './update-user';
 import { ReactComponent as BlogSVG } from './svg/book.svg';
 import { ReactComponent as WorkSVG } from './svg/gears.svg';
 import { ReactComponent as ArtworkSVG } from './svg/photo-camera.svg';
@@ -78,6 +79,11 @@ class CMSnav extends Component{
         if(dataType === 'project'){
             this.setState({
                 currentSelection: 'edit-project'
+            })
+        }
+        if(dataType === 'user'){
+            this.setState({
+                currentSelection: 'edit-user'
             })
         }
         this.setState({
@@ -166,10 +172,13 @@ class CMSnav extends Component{
                                 <ListComments />
                             }
                             { this.state.currentSelection === "user-list" &&
-                                <ListUsers />
+                                <ListUsers handleClick={this.handleListClick} />
                             }
                             { this.state.currentSelection === "add-new-user" &&
                                 <AddUser />
+                            }
+                            { this.state.currentSelection === "edit-user" &&
+                                <UpdateUser slug={this.state.identifier} />
                             }
                         </div>
                     </div>

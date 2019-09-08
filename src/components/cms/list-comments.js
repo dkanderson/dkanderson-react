@@ -1,15 +1,18 @@
 import React, { Component } from 'react';
 import { ReactComponent as DeleteSVG } from './svg/garbage.svg';
+import ConfirmDelete from './confirm-delete';
 
 class ListComments extends Component{
     constructor(props){
         super(props);
         this.state = {
-            data: []
+            data: [],
+            toggleConfirm: false
         }
         this.getCommentData = this.getCommentData.bind(this);
         this.handleClick = this.handleClick.bind(this);
         this.deleteComment = this.deleteComment.bind(this);
+        this.toggleConfirm = this.toggleConfirm.bind(this);
     }
 
     componentWillMount(){
@@ -34,16 +37,16 @@ class ListComments extends Component{
     }
 
     deleteComment(id){
-        fetch(`/api/comment/${id}`, {
-            method: 'DELETE'
+        this.setState({
+            toggleConfirm: true,
+            toggleId: id
         })
-        .then(response => {
-            if(response.status === 200) {
-                this.getCommentData();
-            }
-        })
-        .catch(error => {
-            console.error(error);
+    }
+
+    toggleConfirm(){
+        this.setState({
+            toggleConfirm: false,
+            toggleId: undefined
         })
     }
 
@@ -52,6 +55,14 @@ class ListComments extends Component{
         return data.map((comment) => {
             return (
                 <li className="comment-list list-item" key={comment.id}>
+                    { (+this.state.toggleId === comment.id ) && 
+                        <ConfirmDelete type="comment" 
+                                    identifier={comment.id} 
+                                    title={comment.content} 
+                                    callback={this.getCommentData} 
+                                    handleCancel={this.toggleConfirm} 
+                                    showMessage={this.state.toggleConfirm} />
+                    }
                     <span className="link">{comment.content.slice(0, 20) + (comment.content.length >= 20 ? '...' : '')}</span>
                     <span className="button-wrapper">
                         <button onClick={this.handleClick} className="delete-btn btn" data-type="delete" data-id={comment.id}>

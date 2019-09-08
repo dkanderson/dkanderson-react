@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { ReactComponent as EditSVG } from './svg/edit.svg';
 import { ReactComponent as DeleteSVG } from './svg/garbage.svg';
+import ConfirmDelete from './confirm-delete';
  
 
 class ListBlogs extends Component{
@@ -12,6 +13,7 @@ class ListBlogs extends Component{
         this.handleClick = this.handleClick.bind(this);
         this.getBlogData = this.getBlogData.bind(this);
         this.deleteBlogPost = this.deleteBlogPost.bind(this);
+        this.toggleConfirm = this.toggleConfirm.bind(this);
     }
 
     componentWillMount(){
@@ -40,23 +42,32 @@ class ListBlogs extends Component{
     }
 
     deleteBlogPost(slug){
-        fetch(`/api/blog/${slug}`, {
-            method: 'DELETE'
-        })
-        .then(response => {
-            if(response.status === 200) {
-                this.getBlogData();
-            }
-        })
-        .catch(error => {
-            console.error(error);
+        this.setState({
+            toggleConfirm: true,
+            toggleId: slug
         })
     }
+
+    toggleConfirm(){
+        this.setState({
+            toggleConfirm: false,
+            toggleId: undefined
+        })
+    }
+
 
     populate(data){
         return data.map((blog) => {
             return (
                 <li className="blog list-item" key={blog.id}>
+                    { (this.state.toggleId === blog.slug ) && 
+                        <ConfirmDelete type="blog" 
+                                    identifier={blog.slug} 
+                                    title={blog.title} 
+                                    callback={this.getBlogData} 
+                                    handleCancel={this.toggleConfirm} 
+                                    showMessage={this.state.toggleConfirm} />
+                    }
                     <span className="link" onClick={this.handleClick} data-type="edit" data-slug={blog.slug}>{blog.title.slice(0, 20) + (blog.title.length >= 20 ? '...' : '')}</span>
                     <span className="button-wrapper">
                         <button onClick={this.handleClick} className="edit-btn btn" data-type="edit" data-slug={blog.slug}>
