@@ -22,9 +22,14 @@ class Addblog extends Component{
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.getNextId = this.getNextId.bind(this);
     }
 
     componentWillMount(){
+        this.getNextId();
+    }
+
+    getNextId(){
         fetch('/api/blog')
             .then(response => response.json())
             .then((response) => {
@@ -120,13 +125,14 @@ class Addblog extends Component{
     }
 
     render(){
+
         return(
             <div className="add-blog-form-wrapper form-wrapper">
                 { this.state.validation.hasError && 
                     <Message message="Looks like you missed a few things" messageType="error-msg" messageObject={this.state.validation} />
                 }
                 { this.state.validation.hasSuccess && 
-                    <Message message={`${this.state.title} Added successfully`} messageType="success"  />
+                    <Message message={`Added successfully`} messageType="success"  />
                 }
                 <form className="add-blog-form" action="">
                     <InputField 

@@ -70,6 +70,20 @@ class BlogList extends Component{
 
     }
 
+    formatBlogContent(content){
+        var result = [];
+
+        if(content.match(/<p>(.*?)<\/p>/g)){
+             result = content.match(/<p>(.*?)<\/p>/g).map(function(val){
+                return val.replace(/<\/?p>/g,'');
+            });
+        } else {
+            result.push(content.replace(/(<([^>]+)>)/ig,""));
+        }
+        
+        return result; 
+    }
+
     populate(blogs){
 
         return blogs.map((blog) => {
@@ -92,7 +106,8 @@ class BlogList extends Component{
                             <span>{ this.getCommentCount(slug) }</span> Comments
                         </a>
                     </header>
-                    <div className="entry-summary" dangerouslySetInnerHTML={ {__html: `<p>${$(blog.content).text().slice(0, 300)}</p>`}}>
+                    <div className="entry-summary">
+                        <p>{this.formatBlogContent(blog.content)[0].slice(0, 300)}</p>
                     </div><a href={permalink} title={blog.title}>Continued</a>
                 </article>
             );
