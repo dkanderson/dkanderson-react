@@ -1,6 +1,5 @@
 import React from 'react';
 import './../css/loading.css';
-import $ from 'jquery';
 
 function Loading(props){
     

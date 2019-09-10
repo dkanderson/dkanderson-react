@@ -64,6 +64,8 @@ class BlogList extends Component{
             if(comment.blog_slug === slug){
                 count += 1;
             }
+            
+            return null;
         });
 
         return count;
@@ -75,7 +77,7 @@ class BlogList extends Component{
 
         if(content.match(/<p>(.*?)<\/p>/g)){
              result = content.match(/<p>(.*?)<\/p>/g).map(function(val){
-                return val.replace(/<\/?p>/g,'');
+                return val.replace(/<\/?p>/g,'').replace(/(<([^>]+)>)/ig,"");
             });
         } else {
             result.push(content.replace(/(<([^>]+)>)/ig,""));

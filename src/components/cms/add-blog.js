@@ -94,6 +94,8 @@ class Addblog extends Component{
             content: '',
             date: ''
         })
+
+        this.getNextId();
         
     }
 
@@ -134,6 +136,7 @@ class Addblog extends Component{
                 { this.state.validation.hasSuccess && 
                     <Message message={`Added successfully`} messageType="success"  />
                 }
+
                 <form className="add-blog-form" action="">
                     <InputField 
                         label = "title"

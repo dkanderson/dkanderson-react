@@ -29,12 +29,16 @@ class AddArtwork extends Component{
         }
         this.setFileUrl = this.setFileUrl.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.toggleMessage = this.toggleMessage.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.submitForm = this.submitForm.bind(this);
+        this.generateNextid = this.generateNextid.bind(this);
     }
 
     componentWillMount(){
+        this.generateNextid();
+    }
+
+    generateNextid(){
         fetch('/api/artwork')
             .then(response => response.json())
             .then(response => {
@@ -77,6 +81,8 @@ class AddArtwork extends Component{
                 hasSuccess: false
             }
         });
+
+        this.generateNextid();
     }
 
     handleChange(value, name){
@@ -115,14 +121,6 @@ class AddArtwork extends Component{
                 
             }
         })
-    }
-
-    showSuccessMessage(title, message){
-        console.log(`${title} Uploaded, no worries!`);
-    }
-
-    toggleMessage(message, type){
-        console.log(message);
     }
 
     render(){

@@ -15,7 +15,7 @@ class Skills extends Component{
                         <p>...and loving every second</p>
                     </div>
                 </div>
-                <section id="skills" role="content">
+                <section id="skills">
                     <div className="container sixteen columns">
                         
                         <div className="skill four columns">

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import WorkData from '../workData.json';
 
 class ProjectDisplay extends Component{
     

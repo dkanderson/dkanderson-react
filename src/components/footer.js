@@ -16,7 +16,7 @@ class Footer extends Component{
     
     render(){
         return(
-            <section id="footer" className="footer" role="footer">
+            <section id="footer" className="footer">
                 
                 <footer className="container">
                     <div className="one-third column">

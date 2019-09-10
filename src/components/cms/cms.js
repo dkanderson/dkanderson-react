@@ -15,13 +15,10 @@ class CMS extends Component{
 
     componentWillMount(){
 
-        console.log('CMS: Component Mounted');
-        
         if(!this.state.isLoggedIn){
             fetch('api/authenticate')
                 .then(res => res.json())
                 .then(res => {
-                    console.log(res);
                     if (res.message === "authenticated" ) {
                         this.setState({
                             isLoggedIn: true,

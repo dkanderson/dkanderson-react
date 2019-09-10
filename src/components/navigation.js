@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, NavLink, Route, Switch, Redirect } from 'react-router-dom';
 import $ from 'jquery';
-import Banner from './banner';
 import Skills from './skills';
 import Bio from './bio';
 import Work from './work';

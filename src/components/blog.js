@@ -14,6 +14,7 @@ class Blog extends Component{
         }
 
         this.getCommentCount = this.getCommentCount.bind(this);
+        this.formatBlogContent = this.formatBlogContent.bind(this);
     }
 
     componentWillMount(){
@@ -76,6 +77,21 @@ class Blog extends Component{
         })   
     }
 
+    formatBlogContent(content){
+        var result = [];
+
+        if(content.match(/<p>(.*?)<\/p>/g)){
+             result = content.match(/<p>(.*?)<\/p>/g).map(function(val){
+                return val.replace(/<\/?p>/g,'');
+            });
+        } else {
+            result.push(content.replace(/(<([^>]+)>)/ig,""));
+        }
+        
+        return result; 
+    }
+
+
     displayBlog(blog){
         
         let blogDate = formatDate(blog.date);
@@ -95,7 +111,13 @@ class Blog extends Component{
                             <span>{ this.state.commentCount }</span> Comments
                         </a>
                     </header>
-                    <div className="entry-summary" dangerouslySetInnerHTML={ {__html: blog.content}}>
+                    <div className="entry-summary">
+                       { this.formatBlogContent(blog.content).map(content => {
+                                return(
+                                    <p key={`para-${content.slice(0,15)}`} dangerouslySetInnerHTML={{__html: content}}></p>
+                                );
+                            })
+                        }
                     </div>
                 </article>
                 <Comments data={ this.state.comments } title={blog.title} slug={blog.slug} blog_id={blog.id} lastId = {this.state.lastId}  commentCount={this.state.commentCount} onCommentAdd={this.getCommentCount} />
